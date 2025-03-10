@@ -2,3 +2,4 @@
 Confirm that everyone can commit to the repo:
 - Jason
 - Bill
+- Nova
