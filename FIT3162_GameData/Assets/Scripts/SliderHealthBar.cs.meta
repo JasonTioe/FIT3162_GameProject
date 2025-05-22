@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e3e8197577429429ca3e6feaeeb4eac6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - slider: {instanceID: 0}
+  - battery: {instanceID: 0}
+  - battery1: {fileID: 6723978073440085566, guid: 2ae76921c5dc844d8b75f4d41e9a59c5, type: 3}
+  - battery2: {fileID: -413699187600727832, guid: 0194d056c7dca44c5aefc399fceb2513, type: 3}
+  - battery3: {fileID: 2325460127145266425, guid: 5644d1e577be64155bafa3d7fa61519e, type: 3}
+  - battery4: {fileID: -8379436104267086522, guid: e6629123a7d8a4cf097f814acb2242c7, type: 3}
+  - battery5: {fileID: 8620760759637957665, guid: b9c5d0ae6a4b44ac3aaa5367078f30b5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,20 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-  public float speed = 1.0f;
+    float horizontalInput;
+    float moveSpeed = 7f;
+    bool isFacingRight = true;
+    float jumpPower = 7f;
+    bool isJumping = false;
 
-  private void Update()
-  {
+    Rigidbody2D rb;
+    Animator animator;
     
-    if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-        this.transform.position += Vector3.left * this.speed * Time.deltaTime;
-    } else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-        this.transform.position += Vector3.right * this.speed * Time.deltaTime;
-    } else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-        this.transform.position += Vector3.up * this.speed * Time.deltaTime;
-    } else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-        this.transform.position += Vector3.down * this.speed * Time.deltaTime;
+    void Start() {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
-  }
+
+    void Update() {
+        horizontalInput = Input.GetAxis("Horizontal");
+        FlipSprite();
+        
+        if (Input.GetButtonDown("Jump") & !isJumping) {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower); 
+            isJumping = true;
+        }
+    }
+
+    private void FixedUpdate() {
+        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocity.x));
+    }
+
+    void FlipSprite() {
+        if(isFacingRight && horizontalInput < 0f || !isFacingRight && horizontalInput > 0f) {
+            isFacingRight = !isFacingRight;
+            Vector3 ls = transform.localScale;
+            ls.x *= -1f;
+            transform.localScale = ls;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        isJumping = false;
+    }
 }
